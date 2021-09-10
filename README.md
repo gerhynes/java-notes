@@ -1,5 +1,10 @@
 # Java Notes
 
+Java notes from:
+
+- Matt Speake, Java Beginner Course, [freeCodeCamp](https://www.youtube.com/watch?v=7WiJGTPuVeU)
+- Angie Jones, Java Programming, [Test Automation University](https://testautomationu.applitools.com/java-programming-course/chapter1.html)
+
 ## Overview of Java
 
 Java is a high-level, class-based, object-oriented programmign language.
@@ -209,7 +214,7 @@ You can alternatively step over a method and go to the next line.
 
 You can also view the call stack of which methods were called in which order.
 
-## Fundamentals
+## Misc
 
 The first line of your file will be the package declaration.
 
@@ -217,8 +222,24 @@ A statement is one instruction and ends with a semicolon.
 
 To auto-import a class, use ctrl + space and choose it from the dropdown.
 
-You can have different versions of methods to accept or return different types of values.
+You can have different versions of methods to accept or return different types of values, for example one for strings and another for ints.
 
 Please use descriptive variable names. Variable names cannot start with a number.
 
 You can accept input from the user using the `Scanner` class.
+
+You can write multi-line comments with `/* */`.
+
+Try to avoid magic numbers. Instead assign numbers to a descriptive variable.
+
+## Decision Structures
+
+If statements work as quick detours from the main flow of execution.
+
+They test a condition and execute code depending on whether that condition evaluates to true or false.
+
+```java
+if(sales > quota) {
+  salary = salary + bonus;
+}
+```
