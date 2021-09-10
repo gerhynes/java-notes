@@ -208,3 +208,17 @@ You can step into a method and see the variables currently available to it.
 You can alternatively step over a method and go to the next line.
 
 You can also view the call stack of which methods were called in which order.
+
+## Fundamentals
+
+The first line of your file will be the package declaration.
+
+A statement is one instruction and ends with a semicolon.
+
+To auto-import a class, use ctrl + space and choose it from the dropdown.
+
+You can have different versions of methods to accept or return different types of values.
+
+Please use descriptive variable names. Variable names cannot start with a number.
+
+You can accept input from the user using the `Scanner` class.
