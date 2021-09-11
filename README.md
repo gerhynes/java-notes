@@ -243,3 +243,39 @@ if(sales > quota) {
   salary = salary + bonus;
 }
 ```
+
+```java
+if(sales >= quota){
+    System.out.println("Congratulations, you've met your quota.");
+} else {
+    int salesShort = quota - sales;
+    System.out.println("You did not make your quota. You were " + salesShort + " sales short.");
+}
+```
+
+You can nest if statements for paths inside paths.
+
+```java
+if (salary >= requiredSalary){
+  if (years >= requiredYearsEmployed) {
+      System.out.println("Congratulations, you qualify for the loan.");
+}
+```
+
+You can use if-else-if statements where there are multiple possile paths.
+
+```java
+if(score < 60) {
+    grade = 'F';
+} else if (score < 70) {
+    grade = 'D';
+} else if (score < 80) {
+    grade = 'C';
+} else if (score < 90) {
+    grade = 'B';
+} else {
+    grade = 'A';
+}
+```
+
+The `char` data type holds one character. `char` uses single quotes, while a string uses double quotes.
