@@ -234,6 +234,8 @@ Try to avoid magic numbers. Instead assign numbers to a descriptive variable.
 
 ## Decision Structures
 
+### If Statements
+
 If statements work as quick detours from the main flow of execution.
 
 They test a condition and execute code depending on whether that condition evaluates to true or false.
@@ -244,6 +246,8 @@ if(sales > quota) {
 }
 ```
 
+### If Else Statements
+
 ```java
 if(sales >= quota){
     System.out.println("Congratulations, you've met your quota.");
@@ -253,6 +257,8 @@ if(sales >= quota){
 }
 ```
 
+### Nested If Statements
+
 You can nest if statements for paths inside paths.
 
 ```java
@@ -261,6 +267,8 @@ if (salary >= requiredSalary){
       System.out.println("Congratulations, you qualify for the loan.");
 }
 ```
+
+### If Else If Statements
 
 You can use if-else-if statements where there are multiple possile paths.
 
@@ -279,3 +287,32 @@ if(score < 60) {
 ```
 
 The `char` data type holds one character. `char` uses single quotes, while a string uses double quotes.
+
+### Switch Statements
+
+Switch statements also let you solve problems with multiple possible paths. While if-else-if statements check if a statement is true, a switch statement checks for equality between two values.
+
+You need to specify a `break` if you want to prevent later statements from being run.
+
+```java
+switch(grade){
+    case "A":
+        message = "Excellent job!";
+        break;
+    case "B":
+        message = "Great job!";
+        break;
+    case "C":
+        message = "Good job!";
+        break;
+    case "D":
+        message = "You need to work a bit harder.";
+        break;
+    case "F":
+        message = "We need to talk.";
+        break;
+    default:
+        message = "Error, invalid grade.";
+        break;
+}
+```
