@@ -316,3 +316,30 @@ switch(grade){
         break;
 }
 ```
+
+## Relational and Logical Operators
+
+| Operator | Meaning                  |
+| -------- | ------------------------ |
+| >        | greater than             |
+| <        | less than                |
+| >=       | greater than or equal to |
+| <=       | less than or equal to    |
+| ==       | equal to                 |
+| !=       | not equal to             |
+
+`==` and `!=` will compare the memory location of strings, not the values assigned to them.
+
+If you want to compare the value of two strings, you need to use the `equals()` method: `if(string1.equals(string2))`.
+
+To check if two string values are not equal, add the `!` operator at the beginning of the condition: `if(!string1.equals(string2))`.
+
+If you don't care about the case of the strings, use the `equalsIgnoreCase` method.
+
+Logical operators are used to combine two separate conditions to get one resulting Boolean value. they can eliminate the need for nested if statements in some cases.
+
+| Operator | Meaning                             |
+| -------- | ----------------------------------- |
+| &&       | both conditions must be true        |
+| \|\|     | at least one condition must be true |
+| !        | the condition must be false         |
