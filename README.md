@@ -343,3 +343,18 @@ Logical operators are used to combine two separate conditions to get one resulti
 | &&       | both conditions must be true        |
 | \|\|     | at least one condition must be true |
 | !        | the condition must be false         |
+
+## Loops
+
+Loops are structures that cause a block of code to repeat.
+
+### While loops
+
+A while loop is controlled by a condition and will run as long as that condition is true.
+
+The condition is tested before the loop is entered.
+
+While loops are useful when the loop may or may not need to be executed, based on the situation.
+
+A sentinel is a variable that controls the flow of the loop.
+
