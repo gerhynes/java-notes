@@ -358,3 +358,51 @@ While loops are useful when the loop may or may not need to be executed, based o
 
 A sentinel is a variable that controls the flow of the loop.
 
+```java
+while (hoursWorked > maxHours || hoursWorked < 1) {
+    System.out.println("Invalid entry. Your hours must be between 1 and 40. Please try again.");
+    hoursWorked = scanner.nextDouble();
+}
+```
+
+### Do while loops
+
+A do while loop will run while the specified condition remains true.
+
+The condition is tested after the loop, meaning the loop will run at least one time.
+
+```java
+boolean again;
+do {
+    System.out.println("We're going to add two numbers.");
+    System.out.println("Enter the first number");
+    double num1 = scanner.nextDouble();
+
+    System.out.println("Enter the second number");
+    double num2 = scanner.nextDouble();
+
+    double sum = num1 + num2;
+
+    System.out.println("The sum is " + sum);
+
+    System.out.println("Would you like to start over? Enter: true/false");
+    again = scanner.nextBoolean();
+} while (again);
+```
+
+### For loops
+
+A for loop is count controlled, not condition controlled.
+
+The loop will run a specified number of times. The sentinel value is tested before entering the loop.
+
+```java
+for (int i = 0; i < quantity; i++){
+    System.out.println("Enter the cost of an item:");
+    double price = scanner.nextDouble();
+
+    total = total + price;
+}
+```
+
+You can escape from a loop using the `break` keyword.
