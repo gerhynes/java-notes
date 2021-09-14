@@ -406,3 +406,44 @@ for (int i = 0; i < quantity; i++){
 ```
 
 You can escape from a loop using the `break` keyword.
+
+## Methods
+
+Methods are sub-tasks within a class, letting you break more complex tasks into smaller pieces.
+
+```java
+public static int calculateSum(int number1, int number2){
+  int sum = number1 + number2;
+  return sum;
+}
+```
+
+The first line of a method is the header.
+
+First, you can set the access modifier, which indicates who has access to use this method. `public` means any code from any class can use this method.
+
+Next, you can set a non-access modifier.
+
+Next, you need to specify a return type, the type of data returned by this method. If your method returns nothing, set this to `void`. A method can only return one value.
+
+Next, every method is required to have a name. By convention, they should begin with a verb and describe the task: `calculateSum`. Methods that return a boolean data type start with a question: `isSumNegative`.
+
+Next, parentheses contain all the parameters that will be supplied to the method if it's called.
+
+The method's unique **signature** is the name of the method and its parameter list.
+
+The method must include a return statement if it's retuning a value.
+
+To use a particular method, you need to call it inside the `main` method.
+
+## Variable scope
+
+A variable is only available within the code block in which it was declared.
+
+If a variable needs to be available to multiple methods, you can define it at the class level.
+
+Variables defined within a method are local variables, those outside a method are global variables.
+
+If a method returns a value, you can store it in a variable.
+
+You can scope a variable to any block of code, for example an if statement.
