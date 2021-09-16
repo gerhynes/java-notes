@@ -450,6 +450,8 @@ You can scope a variable to any block of code, for example an if statement.
 
 ## Classes and Objects
 
+A class is a template or blueprint from which objects are created.
+
 Objects are structures that contain data in the form of fields and methods.
 
 Fields store values while methods perform actions.
@@ -496,3 +498,27 @@ Classes should practice **encapsulation**. When you create a class that represen
 Use the `public` access modifier to make getters and setters available to the rest of your application.
 
 If anything is marked as `protected`, it means that other classes within the same package can access it.
+
+### Instantiating Objects
+
+Instantiating a class means using that class to create an object.
+
+To create an instance of an object, use the `new` keyword followed by the class's constructor.
+
+The type of constructor used depends on the parameter signature.
+
+```java
+// Rectangle 1
+Rectangle room1 = new Rectangle();
+room1.setWidth(25);
+room1.setLength(50);
+double areaOfRoom1 = room1.calculateArea();
+
+// Rectangle 2
+Rectangle room2 = new Rectangle(30, 75);
+double areaOfRoom2 = room2.calculateArea();
+```
+
+`room1` and `room2` are new objects with the data type `Rectangle`.
+
+### Objects as Method Parameters and Return Types
