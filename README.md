@@ -447,3 +447,52 @@ Variables defined within a method are local variables, those outside a method ar
 If a method returns a value, you can store it in a variable.
 
 You can scope a variable to any block of code, for example an if statement.
+
+## Classes and Objects
+
+Objects are structures that contain data in the form of fields and methods.
+
+Fields store values while methods perform actions.
+
+The `this` keyword refers to the class in which it's used.
+
+Getter and setter methods let you access or set a value on a class.
+
+```java
+public double getLength(){
+    return length;
+}
+
+public void setLength(double length){
+    this.length = length;
+}
+```
+
+`this` lets you reach outside the scope of a method and access the scope of the class itself.
+
+All objects in Java have a constructor. The default constructor must have the same name as the class. The default constructor is typically used to assign default values to the fields.
+
+Constructors are used to initialize an object or set its state.
+
+A class can have multiple constructors.
+
+```java
+public Rectangle() {
+    length = 0;
+    width = 0;
+}
+
+public Rectangle(double length, double width){
+    this.length = length;
+    this.width = width;
+    // or
+    setLength(length);
+    setWidth(width);
+}
+```
+
+Classes should practice **encapsulation**. When you create a class that represents an object, its fields should be private (only available to the class). The class itself determines how the values are accessed and set.
+
+Use the `public` access modifier to make getters and setters available to the rest of your application.
+
+If anything is marked as `protected`, it means that other classes within the same package can access it.
