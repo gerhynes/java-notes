@@ -522,3 +522,15 @@ double areaOfRoom2 = room2.calculateArea();
 `room1` and `room2` are new objects with the data type `Rectangle`.
 
 ### Objects as Method Parameters and Return Types
+
+The arguments for methods don't just have to be primitive data types, you can use objects as well.
+
+A method can return an object that contains multiple values.
+
+You can return an object directly, you don't have to save it to a variable.
+
+The `static` keyword is used when you don't want to create a new instance of that class but you want access the things inside it. It has no state.
+
+If you don't want to use `static` and you want to keep state then you need to create an instance and then call the methods.
+
+In Java, if you don't define a constructor, a default constructor is defined implicitly.
