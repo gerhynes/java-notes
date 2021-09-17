@@ -589,3 +589,53 @@ public PhoneBill(int id, double baseCost, int allotedMinutes, int minutesUsed){
     this.minutesUsed = minutesUsed;
 }
 ```
+
+## Arrays
+
+Arrays are a container for multiple values. All the values must be of the same data type.
+
+The following array declaration creates an array of ints. The length of an array is also fixed at its declaration.
+
+```java
+int[] lottoTicket = new int[6];
+```
+
+Arrays are 0-indexed. Each element in the array has an index.
+
+Each element in an array works as an individual variable. It can be read or set by accessing its index.
+
+```java
+lottoTicket[0] = 24;
+lottoTicket[1] = 18;
+lottoTicket[2] = 9;
+lottoTicket[3] = 11;
+lottoTicket[4] = 34;
+lottoTicket[5] = 64;
+```
+
+If you know all of an array's values in advance, you can use `{}` to initialize the array.
+
+```java
+int[] lottoTicket = {24, 18, 9, 11, 34, 64};
+```
+
+To read a value, use the value's index.
+
+```java
+int[] lottoTicket = {24, 18, 9, 11, 34, 64};
+System.out.println("The third lottery number is " + lottoTicket[2]);
+```
+
+By convention, a field that doesn't change its value is named with all caps to show that it is a constant. You can add the keyword `final` to make sure it cannot be updated: `private static final int LENGTH = 6;`
+
+You will often use loops to add each value to, or read each value from, an array.
+
+```java
+for(int i = 0; i < LENGTH; i++){
+    ticket[i] = random.nextInt(MAX_TICKET_NUMBER) + 1;
+}
+
+for(int i=0; i < LENGTH; i++){
+    System.out.print(ticket[i] + " | ");
+}
+```
