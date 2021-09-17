@@ -505,7 +505,7 @@ Instantiating a class means using that class to create an object.
 
 To create an instance of an object, use the `new` keyword followed by the class's constructor.
 
-The type of constructor used depends on the parameter signature.
+The type of constructor used is the one that matches the parameter list. You can use the default constructor or pass arguments to it.
 
 ```java
 // Rectangle 1
@@ -525,12 +525,67 @@ double areaOfRoom2 = room2.calculateArea();
 
 The arguments for methods don't just have to be primitive data types, you can use objects as well.
 
-A method can return an object that contains multiple values.
+A method can return an object that contains multiple values. Also, you can return an object directly, you don't have to save it to a variable.
 
-You can return an object directly, you don't have to save it to a variable.
+```java
+return new Rectangle(length, width);
+```
 
-The `static` keyword is used when you don't want to create a new instance of that class but you want access the things inside it. It has no state.
+Remember how `main` is always marked as `static`.
 
-If you don't want to use `static` and you want to keep state then you need to create an instance and then call the methods.
+`static` is used for members of a class which can be accessed without using an instance of the class to do so. Because it’s not associated with an instantiation, these members have no state.
 
-In Java, if you don't define a constructor, a default constructor is defined implicitly.
+If you try to use a non-static method from a static context, you'll get a compilation error.
+
+Here, setting the `width` and `length` for `room1` gives it state. `calculateArea()` then has access to these values.
+
+```java
+Rectangle room1 = new Rectangle();
+room1.setWidth(25);
+room1.setLength(50);
+double areaOfRoom1 = room1.calculateArea();
+```
+
+In a static context, there is no state, you're just calling the method itself.
+
+If you don't want to use `static` and want to keep state, you need to create an instance and then call methods on it.
+
+```java
+HomeAreaCalculator calculator = new HomeAreaCalculator();
+Rectangle kitchen = calculator.getRoom();
+Rectangle bathroom = calculator.getRoom();
+```
+
+Here, you've instantiated `HomeAreaCalculator` using the default constructor (In Java, if you don't define a constructor, a default constructor is defined implicitly).
+
+The `calculator` object is an instance of `HomeAreaCalculator` and has access to the `getRoom()` method using dot notation.
+
+### Overloading Methods within a Class
+
+Within a class, you can have multiple methods that have the same name but different signatures. This is **overloading**.
+
+```java
+// Default constructor
+public PhoneBill(){
+    id = 0;
+    baseCost = 79.99;
+    allottedMinutes = 800;
+    minutesUsed = 800;
+}
+
+// Constructor with id
+public PhoneBill(int id){
+    this.id = id;
+    baseCost = 79.99;
+    allottedMinutes = 800;
+    minutesUsed = 800;
+}
+
+// Constructor with all fields
+public PhoneBill(int id, double baseCost, int allotedMinutes, int minutesUsed){
+    this.id = id;
+    this.baseCost = baseCost;
+    this.allottedMinutes = allotedMinutes;
+    this.minutesUsed = minutesUsed;
+}
+```
