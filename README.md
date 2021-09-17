@@ -639,3 +639,47 @@ for(int i=0; i < LENGTH; i++){
     System.out.print(ticket[i] + " | ");
 }
 ```
+
+### Searching Arrays
+
+Often you won't know the exact contents of an array.
+
+Two common ways to search arrays are:
+
+1. Sequential Search
+
+This searches every element in an array until it finds the value it's looking for or arrives at the end of the array.
+
+This is inefficient for larger arrays.
+
+2. Binary Search
+
+Binary search is more efficient but the array must first be sorted.
+
+On each iteration, binary search checks if the middle element is greater than or less than the value you're searching for and dismisses the half of the array that's too high or too low.
+
+Java has a util method for this: `Arrays.binarySearch`.
+
+You can generate a Javadoc to describe how a method works.
+
+```java
+/**
+* Does a sequential search on the array to find a value
+* @param array Array to search through
+* @param numberToSearchFor Value to search for
+* @return true if found, false if not
+*/
+public static boolean search(int[] array, int numberToSearchFor){
+  for(int value : array){
+      if (value == numberToSearchFor){
+          return true;
+      }
+  }
+  // If entire array was searched and value not found
+  return false;
+}
+```
+
+The code above uses an enhanced for loop. It iterates through the array and each time assigns the current element to value.
+
+The `Arrays` class has a number of useful methods including `sort`, which will put all the elements of the array in ascending order, and `binarySearch`, which will return an int of the index of the found value or -1 if the value wasn't found.
