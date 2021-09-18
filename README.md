@@ -683,3 +683,54 @@ public static boolean search(int[] array, int numberToSearchFor){
 The code above uses an enhanced for loop. It iterates through the array and each time assigns the current element to value.
 
 The `Arrays` class has a number of useful methods including `sort`, which will put all the elements of the array in ascending order, and `binarySearch`, which will return an int of the index of the found value or -1 if the value wasn't found.
+
+### Useful Tricks for Arrays
+
+You can create an array with a length based off user input:
+
+```java
+System.out.println("How many grades would you like to enter?");
+grades = new int[scanner.nextInt()];
+```
+
+`String.format("%.2f", NUMBER_TO_FORMAT);` formats strings to two decimal places.
+
+To get the highest value in an array, you could:
+
+- sort the array in ascending order and take the last item
+- set a variable to the first element in the array, loop over the array, if any element is higher than the variable, set it to the variable.
+
+```java
+public static int getHighest(){
+    int highest = grades[0];
+    for (int grade : grades){
+        if(grade > highest){
+            highest = grade;
+        }
+    }
+    return highest;
+}
+```
+
+#### Common errors with arrays
+
+Trying to access an index greater than the length of the array will generate an `ArrrayIndexOutOfBoundsException`. This can also happen when looping if you don't keep track of the number of elements.
+
+### Arrays of Objects
+
+Arrays are not limited to ints, they can hold any data type, including objects.
+
+```java
+Students students[] = new Students[24];
+students[0] = new Student("John Doe");
+```
+
+### Multidimensional arrays
+
+You can declare an array of arrays, though it's not very common.
+
+A two-dimensional array is like a table that holds data in rows and columns.
+
+```java
+int[][] grades = new grades[24][4];
+```
