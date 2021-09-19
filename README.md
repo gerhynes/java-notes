@@ -734,3 +734,90 @@ A two-dimensional array is like a table that holds data in rows and columns.
 ```java
 int[][] grades = new grades[24][4];
 ```
+
+## Data Types
+
+Programming languages are either dynamically typed or statically typed.
+
+Dynamically typed languages determine the data type of a variable at runtime so you don't need to specify the data type in advance.
+
+Java is a statically typed programming language. You need to declare the type of variables before they can be assigned values. Their data type is checked at compile time.
+
+In Java 10 support for type inference was added. This means you can declare a variable as `var` and Java will infer the data type based on what is assigned to the variable.
+
+```java
+// Static typing
+Rectangle[][] grid = getGridArray();
+
+// Type inference
+var grid = getGridArray(;)
+```
+
+### Rules for type inference
+
+- Local only - It only works for local variables.
+- Initialization is required - The variable must be initialized at the time of declaration.
+- Not allowed in headers - It cannot be used for parameters or as return types.
+
+### Primitive Data Types
+
+Primitives are the 8 most basic datatypes and are provided by Java itself.
+
+Variables that are declared without an initial value are set to their default value, except for local variables which you must initialize before using.
+
+| Name    | Default  | Size   | Type           | Example           |
+| ------- | -------- | ------ | -------------- | ----------------- |
+| byte    | 0        | 8-bit  | Integral       | byte b = 100;     |
+| short   | 0        | 16-bit | Integral       | short s = 10000;  |
+| int     | 0        | 32-bit | Integral       | int i = 100000;   |
+| long    | 0L       | 64-bit | Integral       | long l = 9999999; |
+| float   | 0.0f     | 32-bit | Floating Point | float f = 123.4f; |
+| double  | 0.0d     | 64-bit | Floating Point | double d = 12.4;  |
+| boolean | false    | 1-bit  | Boolean        | boolean b = true; |
+| char    | `\u0000` | 16-bit | Character      | char c = 'C';     |
+
+### Wrapper Classes
+
+All primitive data types can also be expressed as objects. There are **wrapper classes**.
+
+```java
+int number1 = 5;
+
+Integer number2 = 5;
+```
+
+`number1` has a data type of `int`, which is a primitive.
+
+`number2` has a data type of `Integer`, which is a wrapper class for the primitive data type `int`. This makes `number2` an object, so you can use methods from the `Integer` class.
+
+```java
+public static void convertDecimalToInt(){
+  double[] numbers = {1.5, 3.99, 45.5, 222.6};
+  for (Double number : numbers){
+    System.out.println(number.intValue());
+  }
+}
+// 1
+// 3
+// 45
+// 222
+```
+
+Here you have an array of numbers declared as the primitive data type `double`. Inside the for loop their type is converted to the corresponding wrapper class `Double`. This now gives them access to methods such as `intValue()` which will convert the decimal to a whole number.
+
+As well as methods to convert values to other data types, there are also methods to do things like sum two numbers together ot get the min and max values allowed for the data type.
+
+Wrapper classes exist for all primitive data types.
+
+| Primitive Data Type | Wrapper Class |
+| ------------------- | ------------- |
+| byte                | Byte          |
+| short               | Short         |
+| int                 | Integer       |
+| long                | Long          |
+| float               | Float         |
+| double              | Double        |
+| boolean             | Boolean       |
+| char                | Character     |
+
+If you look at the Javadoc for the `Integer` class, you'll see it has fields such as `MAX_VALUE` and `MIN_VALUE`, as well as methods such as `compare()` and `toString()`.
