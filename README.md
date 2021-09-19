@@ -821,3 +821,74 @@ Wrapper classes exist for all primitive data types.
 | char                | Character     |
 
 If you look at the Javadoc for the `Integer` class, you'll see it has fields such as `MAX_VALUE` and `MIN_VALUE`, as well as methods such as `compare()` and `toString()`.
+
+## Strings
+
+Strings are not a primitive data type and also they aren't a wrapper class.
+
+A String is an object and a sequence of characters. Like the wrapper classes, the `String` class provides helpful methods for dealing with strings.
+
+A String
+
+```java
+String str = "abc";
+```
+
+is equivalent to an array of characters:
+
+```java
+char data[] = {'a', 'b', 'c'};
+String str = new String(data);
+```
+
+Unlike an array, you can't access an element using bracket notation. The `charAt()` method lets you get the char at a specified index.
+
+`contain()` lets you see if a string contains a certain sequence of characters. `endsWith()` and `startsWith()` let you do this for the ends of strings.
+
+`indexOf()` returns the index in the string where a substring first occurs.
+
+`isEmpty()` tells you if the string has data in it.
+
+`replace()` and `replaceAll()` lets you replace a substring.
+
+`substring()` gives you a substring based off a beginning and ending index.
+
+`trim()` gets rid of whitespace at the beginning or end of a string.
+
+### StringBuilder
+
+The `String` object is immutable. It doesn't allow for the manipulation of the actual string itself.
+
+To insert or delete characters from a string, you need to use the `StringBuilder` class.
+
+```java
+/**
+  * Adds spaces before each uppercase letter
+  * @param text jumbled text
+  */
+public static void addSpaces(String text){
+    var modifiedText = new StringBuilder(text);
+    for(int i = 0; i < modifiedText.length(); i++){
+        if(i != 0 && Character.isUpperCase(modifiedText.charAt(i))){
+            modifiedText.insert(i, " ");
+            i++;
+        }
+    }
+    System.out.println(modifiedText);
+}
+```
+
+### Popular text processing methods
+
+| Character    | String      | StringBuilder |
+| ------------ | ----------- | ------------- |
+| isUpperCase  | StartsWith  | append        |
+| isLowerCase  | endsWith    | insert        |
+| isDigit      | indexOf     | delete        |
+| isWhitespace | lastIndexOf | reverse       |
+|              | charAt      |               |
+|              | substring   |               |
+|              | split       |               |
+|              | trim        |               |
+|              | replace     |               |
+|              | concat      |               |
