@@ -892,3 +892,32 @@ public static void addSpaces(String text){
 |              | trim        |               |
 |              | replace     |               |
 |              | concat      |               |
+
+## Inheritance
+
+There are 4 main principles of OOP:
+
+- Encapsulation
+- Inheritance
+- Polymorphism
+- Abstraction
+
+Inheritance is where one class becomes an extension of another class, therefore inheriting the members of that class.
+
+There are two parties involved in inheritance: a parent Superclass and a child Subclass.
+
+This lets classes reuse data that already exists in other classes.
+
+Subclasses should be a more specialized form of the Superclass they inherit from. This lets you focus on defining things specific to the Subclass.
+
+Inheritance sets up an "is a" relationship between two classes, for example an Employee **is a** Person.
+
+To set up an inheritance relationship between classes, use the `extends` keyword in the Subclass's header. You don't need to do anything to the Superclass.
+
+```java
+public class Employee extends Person {
+  // Employee now has access to Person's methods
+}
+```
+
+The Subclass can also have things that are specific to the Subclass. For example, the Person class could provide getters and setters for name and age, while the Employee class adds getters and setters for employeeId and title.
