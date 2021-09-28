@@ -921,3 +921,44 @@ public class Employee extends Person {
 ```
 
 The Subclass can also have things that are specific to the Subclass. For example, the Person class could provide getters and setters for name and age, while the Employee class adds getters and setters for employeeId and title.
+
+### Constructors in Inheritance
+
+When you make a new instance of a Subclass it makes a call to the constructor of the Superclass before it executes its own constructor.
+
+This makes sure everything in the Superclass is set up before trying to use it in the Subclass.
+
+You can specify if you want to call a non-default constructor by using `super()`.
+
+`super()` will call the constructor of the Superclass. If you pass no parameters to `super()` it will call the default constructor.
+
+If you pass arguments to `super()` it will call the relevant constructor in the Superclass.
+
+If you're going to make a `super()` call to the Superclass's constructor, that call must be the first line of the Subclass' constructor.
+
+```java
+// Constructors in Person class
+public Person() {
+    System.out.println("In Person default constructor");
+}
+
+public Person(String name){
+    System.out.println("In Person 2nd constructor. Name is set");
+}
+
+// Calling super with arguments in Employee class
+public Employee() {
+    super("angie");
+}
+```
+
+If the Superclass doesn't have a default constructor, the Subclass must explicitly call one of its other constructors.
+
+To reiterate:
+
+- Superclass constructors run first
+- Use `super` to call specific Superclass constructors
+- `super` calls must be first in the Subclass constructor
+- some constructor must be executed
+
+### Overriding and Inherited Methods
