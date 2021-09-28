@@ -962,3 +962,40 @@ To reiterate:
 - some constructor must be executed
 
 ### Overriding and Inherited Methods
+
+A Subclass might want to change the functionality of a method it inherited. This is allowed by overriding the inherited method.
+
+You recreate the method in the Subclass with the same signature as exists in the Superclass.
+
+It's good practice to mark overriden mehtods with `@Override`.
+
+```java
+// Rectangle Superclass
+public double calculatePerimeter(){
+    return (2 * length) + (2 * width);
+}
+
+// Square Subclass
+@Override
+public double calculatePerimeter(){
+    return sides * length;
+}
+```
+
+### Overloading Inherited Methods
+
+Overloading methods is when you have two methods with the same name but different parameter lists.
+
+You can overload a method inherited from a Superclass even though that method lives on another class.
+
+```java
+// Rectangle Superclass
+public void print(){
+    System.out.println("This is a rectangle");
+}
+
+// Square Subclass
+public void print(String thingToPrint) {
+    System.out.println("This is a " + thingToPrint);
+}
+```
