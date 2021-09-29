@@ -999,3 +999,26 @@ public void print(String thingToPrint) {
     System.out.println("This is a " + thingToPrint);
 }
 ```
+
+## Access Limitations and Multiple Inheritance
+
+When a Subclass inherits from a Superclass, not everything is inherited.
+
+- Constructors are not inherited (they're technically not members of a class)
+- Public and protected methods and fields are inherited
+- Private methods and fields are not inherited
+- Final methods are inherited but cannot be overriden
+
+Fields marked as `public`, `protected` or unmarked can be inherited. FIelds marked as `private` cannot.
+
+If you inherited a `public` method and are overriding it, you need to keep it as `public`. If you try to set the overriden method as something stricter, you'll get an error.
+
+### Chain of Inheritance
+
+Java classes can onyl directly inherit from one Superclass. But a Superclass can also inherit from another class, forming a **chain of inheritance** where a Subclass inherits from all of its ancestor classes.
+
+Java provides an Object class and all classes, whether created by Java or by you, inherit from the Object class (without needing the explicit use of `extends`).
+
+You could create a `Woman` class that inherits from a `Person` class and then a `Mother` class that inherits from `Woman`.
+
+Multiple classes can inherit from the same Superclass without having any connection: for example, `Employee` and `Woman` can both inherit from `Person`.
