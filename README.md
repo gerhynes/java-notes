@@ -904,15 +904,15 @@ There are 4 main principles of OOP:
 
 Inheritance is where one class becomes an extension of another class, therefore inheriting the members of that class.
 
-There are two parties involved in inheritance: a parent Superclass and a child Subclass.
+There are two parties involved in inheritance: a parent superclass and a child subclass.
 
 This lets classes reuse data that already exists in other classes.
 
-Subclasses should be a more specialized form of the Superclass they inherit from. This lets you focus on defining things specific to the Subclass.
+Subclasses should be a more specialized form of the superclass they inherit from. This lets you focus on defining things specific to the subclass.
 
 Inheritance sets up an "is a" relationship between two classes, for example an Employee **is a** Person.
 
-To set up an inheritance relationship between classes, use the `extends` keyword in the Subclass's header. You don't need to do anything to the Superclass.
+To set up an inheritance relationship between classes, use the `extends` keyword in the subclass's header. You don't need to do anything to the superclass.
 
 ```java
 public class Employee extends Person {
@@ -920,21 +920,21 @@ public class Employee extends Person {
 }
 ```
 
-The Subclass can also have things that are specific to the Subclass. For example, the Person class could provide getters and setters for name and age, while the Employee class adds getters and setters for employeeId and title.
+The subclass can also have things that are specific to the subclass. For example, the Person class could provide getters and setters for name and age, while the Employee class adds getters and setters for employeeId and title.
 
 ### Constructors in Inheritance
 
-When you make a new instance of a Subclass it makes a call to the constructor of the Superclass before it executes its own constructor.
+When you make a new instance of a subclass it makes a call to the constructor of the superclass before it executes its own constructor.
 
-This makes sure everything in the Superclass is set up before trying to use it in the Subclass.
+This makes sure everything in the superclass is set up before trying to use it in the subclass.
 
 You can specify if you want to call a non-default constructor by using `super()`.
 
-`super()` will call the constructor of the Superclass. If you pass no parameters to `super()` it will call the default constructor.
+`super()` will call the constructor of the superclass. If you pass no parameters to `super()` it will call the default constructor.
 
-If you pass arguments to `super()` it will call the relevant constructor in the Superclass.
+If you pass arguments to `super()` it will call the relevant constructor in the superclass.
 
-If you're going to make a `super()` call to the Superclass's constructor, that call must be the first line of the Subclass' constructor.
+If you're going to make a `super()` call to the superclass's constructor, that call must be the first line of the subclass' constructor.
 
 ```java
 // Constructors in Person class
@@ -952,30 +952,30 @@ public Employee() {
 }
 ```
 
-If the Superclass doesn't have a default constructor, the Subclass must explicitly call one of its other constructors.
+If the superclass doesn't have a default constructor, the subclass must explicitly call one of its other constructors.
 
 To reiterate:
 
-- Superclass constructors run first
-- Use `super` to call specific Superclass constructors
-- `super` calls must be first in the Subclass constructor
+- superclass constructors run first
+- Use `super` to call specific superclass constructors
+- `super` calls must be first in the subclass constructor
 - some constructor must be executed
 
 ### Overriding and Inherited Methods
 
-A Subclass might want to change the functionality of a method it inherited. This is allowed by overriding the inherited method.
+A subclass might want to change the functionality of a method it inherited. This is allowed by overriding the inherited method.
 
-You recreate the method in the Subclass with the same signature as exists in the Superclass.
+You recreate the method in the subclass with the same signature as exists in the superclass.
 
 It's good practice to mark overriden mehtods with `@Override`.
 
 ```java
-// Rectangle Superclass
+// Rectangle superclass
 public double calculatePerimeter(){
     return (2 * length) + (2 * width);
 }
 
-// Square Subclass
+// Square subclass
 @Override
 public double calculatePerimeter(){
     return sides * length;
@@ -986,15 +986,15 @@ public double calculatePerimeter(){
 
 Overloading methods is when you have two methods with the same name but different parameter lists.
 
-You can overload a method inherited from a Superclass even though that method lives on another class.
+You can overload a method inherited from a superclass even though that method lives on another class.
 
 ```java
-// Rectangle Superclass
+// Rectangle superclass
 public void print(){
     System.out.println("This is a rectangle");
 }
 
-// Square Subclass
+// Square subclass
 public void print(String thingToPrint) {
     System.out.println("This is a " + thingToPrint);
 }
@@ -1002,7 +1002,7 @@ public void print(String thingToPrint) {
 
 ## Access Limitations and Multiple Inheritance
 
-When a Subclass inherits from a Superclass, not everything is inherited.
+When a subclass inherits from a superclass, not everything is inherited.
 
 - Constructors are not inherited (they're technically not members of a class)
 - Public and protected methods and fields are inherited
@@ -1015,10 +1015,58 @@ If you inherited a `public` method and are overriding it, you need to keep it as
 
 ### Chain of Inheritance
 
-Java classes can onyl directly inherit from one Superclass. But a Superclass can also inherit from another class, forming a **chain of inheritance** where a Subclass inherits from all of its ancestor classes.
+Java classes can only directly inherit from one superclass. But a superclass can also inherit from another class, forming a **chain of inheritance** where a subclass inherits from all of its ancestor classes.
 
 Java provides an Object class and all classes, whether created by Java or by you, inherit from the Object class (without needing the explicit use of `extends`).
 
 You could create a `Woman` class that inherits from a `Person` class and then a `Mother` class that inherits from `Woman`.
 
-Multiple classes can inherit from the same Superclass without having any connection: for example, `Employee` and `Woman` can both inherit from `Person`.
+Multiple classes can inherit from the same superclass without having any connection: for example, `Employee` and `Woman` can both inherit from `Person`.
+
+## Polymorphism
+
+Polymorphism is the ability to take multiple forms. In OOP, polymorphism is where a subclass can define its own unique behaviours but still share some of the same behavious of its superclass.
+
+An example of polymorphism is where an object has a superclass type but is an instance of a subclass.
+
+Say you have a `Dog` subclass which inherits from its superclass `Animal`.
+
+```java
+Animal dog = new Dog();
+```
+
+`dog` is an instance of `Dog` but is defined as having the type `Animal`.
+
+This is possible because `Dog` inherits from `Animal`, and therefore `dog` is an `Animal`.
+
+With polymorphism, you can can change an object from being an instance of one class to being an instance of another. This is legal as long as both classes inherit from the same superclass.
+
+Below, the `sasha` object is an instance of `Dog` but can be changed to be an instance of `Cat`.
+
+Because `sasha` is of type `Animal`, not `Cat`, it doesn't have access to the `Cat`'s `scratch` method.
+
+You can get around this using **casting**. Casting is the act of converting an object's type into a different type.
+
+`((Cat) sasha).scratch();` let's `sasha` be considered as type `Cat` in this instance, and gives it access to `Cat`'s methods.
+
+Casting doesn't permanently change an objects type.
+
+```java
+Dog rocky = new Dog();
+rocky.fetch(); // from Dog class
+rocky.makeSound(); // from Animal, overriden in Dog
+
+Animal sasha = new Dog();
+sasha.makeSound(); // from Animal, overriden in Dog
+
+sasha = new Cat(); // legal because both Cat and Dog inherit from Animal
+sasha.makeSound(); // from Animal, overriden in Cat
+((Cat) sasha).scratch(); // cast to Cat type
+```
+
+### Polymorphism key points
+
+- **Type vs Instance** - An object can have a superclass type and a subclass instance.
+- **Access** - Polymorphic objects can only access the methods of their type (not their instance). Casting is required in order to access the methods of their instance.
+- **Overridden Methods** - If a method is overridden by the subclass, the polymorphic object will execute the overridden method at runtime.
+- **instanceof Operator** - This operator is used to determine if an object is an instance of a certain class.
