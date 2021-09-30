@@ -1070,3 +1070,38 @@ sasha.makeSound(); // from Animal, overriden in Cat
 - **Access** - Polymorphic objects can only access the methods of their type (not their instance). Casting is required in order to access the methods of their instance.
 - **Overridden Methods** - If a method is overridden by the subclass, the polymorphic object will execute the overridden method at runtime.
 - **instanceof Operator** - This operator is used to determine if an object is an instance of a certain class.
+
+## Abstraction
+
+Abstraction is something that exists in theory but doesn't have a concrete existence.
+
+In Java the reserved keyword `abstract` is a non-access modifier that can be used on classes and methods. It's used when you want to define a template for a class or method but don't intend to use it as is.
+
+An abstract class isn't designed to be instantiated. It's designed to serve as a parent class, from which more specific subclasses can be extended.
+
+For example, a `Shape` is an abstract concept that can specify some general behaviour that a type of shape would have but is too abstract to actually define what an individual shape's behaviour should be.
+
+An abstract method has no body, only the signature of the method. It's not designed to be run but to be overriden in a subclass.
+
+This is meant to be a template to set a standard that any subclass of `Shape` should follow.
+
+An abstract class can contain implemented methods as well as abstract methods.
+
+```java
+public abstract class Shape {
+  abstract double calculateArea();
+
+  public void print(){
+    System.out.println("This is a shape");
+  }
+}
+```
+
+You can use an abstract class as a type but you cannot instantiate it. You'll get a compilation error.
+
+### Abstraction key points
+
+- **Templates** - Abstract classes and methods are templates that meant to be implemented by subclasses.
+- **Reserved words** - Classes and methods are declared abstract using the `abstract` keyword.
+- **Implementation required in inheritance** - If a subclass extends from an abstract class, it must implement its abstract ethods or be declared abstract itself.
+- **Abstract classes** - Abstract classes cannot be instantiated. They can only be used as superclasses. If one method in a class is abstract, the whole class must be declared abstract.
