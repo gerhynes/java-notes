@@ -1105,3 +1105,63 @@ You can use an abstract class as a type but you cannot instantiate it. You'll ge
 - **Reserved words** - Classes and methods are declared abstract using the `abstract` keyword.
 - **Implementation required in inheritance** - If a subclass extends from an abstract class, it must implement its abstract ethods or be declared abstract itself.
 - **Abstract classes** - Abstract classes cannot be instantiated. They can only be used as superclasses. If one method in a class is abstract, the whole class must be declared abstract.
+
+## Interfaces
+
+An interface is similar to an abstract class. In an abstract class some methods can be implemented, while in an interface all methods are abstract.\* For this reason you don't need to declare that the methods are abstract.
+
+Another difference is that interfaces are implemented, not extended. Any class that implements an interface must implement all it's methods or must declare itself as an abstract class.
+
+If you define a field in an interface, that field has to be final. Becuae it's final, it's essentially a constant and so you would also have to give it a value.
+
+If the purpose of the interface is so that other classes can inherit from it, then you won't want to add fields where the values can change based on the implementation of the interface. So most of the time you'll only provide methods, not fields.
+
+```java
+public interface Product {
+  double getPrice();
+  void setPrice(double price);
+
+  String getName();
+  void setName(String name);
+
+  String getColor();
+  void setColor(String color);
+
+  default String getBarcode() {
+      return "No barcode found.";
+  }
+}
+```
+
+While a class can only extend one superclass, it can implement multiple interfaces.
+
+If a class declares that it implements multiple interfaces, it must provide the methods specified in all of the interfaces.
+
+```java
+public class Book implements Product, KindleItem {
+
+}
+```
+
+Since Java 8, not all methods in an interface need to be abstract.
+
+Between an interface and the classes that implement it is a contract. If you changed the interface by adding a method it would break everything that implemented the interface.
+
+Java 8 introduced the option of declaring methods as `default` in an interface. If you declare a method as `default`, you can provide a default implementation for this method. This won't break any classes implementing the interface.
+
+```java
+public interface Product {
+    // abstract methods
+
+    default String getBarcode() {
+        return "No barcode found.";
+    }
+}
+```
+
+### Interfaces key points
+
+- **Not for instantiation** - Interfaces cannot be instantiated.
+- **Implement** - Interfaces are implemented, not extended.
+- **Abstract if not implemented** - Any clas sthat implements an interface must implement all its methods or it must declare itself abstract.
+- **Abstract methods** - Methods in an interface must be abstract (no explicit declaration needed) or default.
