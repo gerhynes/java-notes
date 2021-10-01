@@ -1222,12 +1222,98 @@ The methods available for sets (inherited from `Collection`) are:
 
 `List` is a collection where elements are ordered. A `List` can contain duplicate elements. A use case would be the contacts in your call history, which are listed in order and some numbers may appear more than once.
 
+Some implementations of lists are `ArrayList`, `LinkedList`, `Stack` and `Vector`.
+
+Lists are ordered so their elements can be accessed using their index. A list can also contain duplicate elements.
+
+```java
+List fruit = new ArrayList();
+fruit.add("apple");
+fruit.add("lemon");
+fruit.add("banana");
+fruit.add("orange");
+fruit.add("lemon");
+
+System.out.println(fruit.get(2)); // banana
+System.out.println(fruit.size()); // 5
+System.out.println(fruit); // [apple, lemon, banana, orange, lemon]
+```
+
+In addition to methods inherited from `Collection`, additional methods available for lists are:
+
+| Method                                  | Description                                                                                                                  |
+| --------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| add(int index, Object obj)              | Inserts obj into list at position of index                                                                                   |
+| addAll(int index, Collection c)         | Inserts all elements of c into the list at the position of index                                                             |
+| get(int index)                          | Returns the object stored at the specified index within the invoking collection                                              |
+| isEmpty()                               | Returns true if the list contains no elements                                                                                |
+| indexOf(Object obj)                     | Returns the index of the first instance of obj in the list                                                                   |
+| lastIndexOf(Object obj)                 | Returns the index of the last instance of obj in the list                                                                    |
+| listIterator(), listIterator(int index) | Returns a list iterator over the elements in this list (in proper sequence), starting at the specified position in the list. |
+| remove(int index)                       | Removes the element at position index and returns the deleted element                                                        |
+| set(int index, Object obj)              | Assigns obj to the location specified by index within the invoking list                                                      |
+| subList(int start, int end)             | Returns a list containing elements from start to end                                                                         |
+
 ### Queue
 
-`Queue` is a collection of ordered elements, typically used to hold items that are going to be processed in some way. A use case would be a checkout queue, where new people are added to the end and the processing of the queue is handled from the beginning.
+`Queue` is a collection of ordered elements, typically used to hold items that are going to be processed in some way.
+
+Queues typically follow the first in-first out algorithm — elements are processed in the order in which they were entered.
+
+The first element of a Queue is the head and the last element is the tail.
+
+A use case would be a checkout queue, where new people are added to the end and the processing of the queue is handled from the beginning.
+
+```java
+Queue fruit = new LinkedList();
+fruit.add("apple");
+fruit.add("lemon");
+fruit.add("banana");
+fruit.add("orange");
+fruit.add("lemon");
+
+System.out.println(fruit.size()); // 5
+System.out.println(fruit); // [apple, lemon, banana, orange, lemon]
+fruit.remove();
+System.out.println(fruit); // [lemon, banana, orange, lemon]
+System.out.println(fruit.peek()); // lemon
+```
+
+In addition to the basic `Collection` operations, `Queue` also provides additional methods for insertion, removal and inspection of elements.
+
+| Method  | Description                                                                             |
+| ------- | --------------------------------------------------------------------------------------- |
+| add     | Adds element to the tail of the queue                                                   |
+| peek    | Used to view the head of the queue without removing it. Returns false if queue is empty |
+| element | Similar to peek but throws an exception if the queue is empty                           |
+| remove  | Removes and returns the head of the queue. Throws an exception if the queue is empty    |
+| poll    | Similar to remove but returns null if the queue is empty                                |
 
 ### Map
 
 `Map` isn't a true collection, it doesn't inherit from the `Collection` interface. But it does contain collection-like operations which enable them to be used as collections.
 
 `Map`s are used to hold key-value pairs, for example a list of bank transactions where each `Map` entry has a unique transaction ID serving as the key and the actual transaction object serving as the value.
+
+You can access an element in a map by its key. While the keys are required to be unique, the values are not.
+
+If you try to pass in a key that already exists, the map will update that entry with the new value that was passed in. You can use `putIfAbsent()` to prevent yourself from unintentionally overriding something that's already in the map.
+
+Popular implementations of the map interface are `HashMap`, `TreeMap` and `LinkedHashMap`.
+
+```java
+Map fruitCalories = new HashMap();
+fruitCalories.put("apple", 95);
+fruitCalories.put("lemon", 20);
+fruitCalories.put("banana", 105);
+fruitCalories.put("orange", 45);
+fruitCalories.put("lemon", 17);
+
+System.out.println(fruitCalories.size()); // 4
+System.out.println(fruitCalories); // {banana=105, orange=45, apple=95, lemon=17}
+fruit.remove();
+System.out.println(fruitCalories.get("lemon")); // 17
+System.out.println(fruitCalories.entrySet()); // [banana=105, orange=45, apple=95, lemon=17]
+fruitCalories.remove("orange");
+System.out.println(fruitCalories); // {banana=105, apple=95, lemon=17}
+```
