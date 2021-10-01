@@ -1139,7 +1139,6 @@ If a class declares that it implements multiple interfaces, it must provide the 
 
 ```java
 public class Book implements Product, KindleItem {
-
 }
 ```
 
@@ -1165,3 +1164,70 @@ public interface Product {
 - **Implement** - Interfaces are implemented, not extended.
 - **Abstract if not implemented** - Any clas sthat implements an interface must implement all its methods or it must declare itself abstract.
 - **Abstract methods** - Methods in an interface must be abstract (no explicit declaration needed) or default.
+
+## Collections
+
+A Collection is an object that holds references to other objetcs. A Collection is a **data structure** and the objects within it are **elements**.
+
+Java provides a collections framework which consists of interfaces, classes and methods to store and manipulate aggregate data.
+
+Some collections allow duplicate elements while others require every element to be unique. Some collections are ordered while others are not.
+
+All of the interfaces and classes for the collections framework can be found in the `java.util` package.
+
+`Collection` itself is an interface and is the root of the hierarchy. Java doesn't provide any direct implementations of the `Collection` interface but there are other interfaces which inherit from `Collection`.
+
+- **Set** - Unordered unique elements.
+- **List** - Ordered elements which can be accessed by position.
+- **Queue** - Ordered elements for processing. Access in the order the elements were added (FIFO - first in first out)
+- **Map** - Unordered unique key-value pairs.
+
+### Set
+
+`Set` is a collection which cannot contain duplicate elements. A use case would be a deck of 52 unique cards.
+
+Because `Set` is an interface, it cannot be instantiated, but it can be an object's type.
+
+Some implementations of `Set` are `HashSet`, `LinkedHashSet` and `TreeSet`.
+
+You use the `add` method to place items in a set. If you try to add duplicates to a set, no error will happen but the duplicate items won't be saved.
+
+Since the set is unordered, you have no control over where your elements will be placed.
+
+```java
+Set fruit = new HashSet();
+fruit.add("apple");
+fruit.add("lemon");
+fruit.add("banana");
+fruit.add("orange");
+fruit.add("lemon");
+
+System.out.println(fruit.size()); // 4
+System.out.println(fruit); // [banana, orange, apple, lemon]
+```
+
+The methods available for sets (inherited from `Collection`) are:
+
+| Method   | Description                                                                            |
+| -------- | -------------------------------------------------------------------------------------- |
+| add      | Adds an object to the collection                                                       |
+| clear    | Removes all objects from the collection                                                |
+| contains | Returns true if a specified object is an element within the collection                 |
+| isEmpty  | Returns true if the collection has no elements                                         |
+| iterator | Returns an Iterator object for the collection, which can be used to retrieve an object |
+| remove   | Removes a specified object from the collection                                         |
+| size     | Returns the number of elements in the collection                                       |
+
+### List
+
+`List` is a collection where elements are ordered. A `List` can contain duplicate elements. A use case would be the contacts in your call history, which are listed in order and some numbers may appear more than once.
+
+### Queue
+
+`Queue` is a collection of ordered elements, typically used to hold items that are going to be processed in some way. A use case would be a checkout queue, where new people are added to the end and the processing of the queue is handled from the beginning.
+
+### Map
+
+`Map` isn't a true collection, it doesn't inherit from the `Collection` interface. But it does contain collection-like operations which enable them to be used as collections.
+
+`Map`s are used to hold key-value pairs, for example a list of bank transactions where each `Map` entry has a unique transaction ID serving as the key and the actual transaction object serving as the value.
