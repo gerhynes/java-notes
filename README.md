@@ -1317,3 +1317,29 @@ System.out.println(fruitCalories.entrySet()); // [banana=105, orange=45, apple=9
 fruitCalories.remove("orange");
 System.out.println(fruitCalories); // {banana=105, apple=95, lemon=17}
 ```
+
+| Method                                | Description                                                                      |
+| ------------------------------------- | -------------------------------------------------------------------------------- |
+| clear                                 | Removes all key/value pairs from the map                                         |
+| containsKey(Object key)               | Returns true if the map contains an element that has key                         |
+| containsValue()                       | Returns true if the map contains an element that has value                       |
+| entrySet                              | Returns a Set that contains the entries in the map                               |
+| get(Object key)                       | Returns the value associated with the key                                        |
+| isEmpty                               | Returns true if the Map is empty, otherwise returns false                        |
+| keyset                                | Returns a Set that contains the keys in the map                                  |
+| put(Object key, Object value)         | Puts an entry in the map, overwriting any previous value associated with the key |
+| putAll(Map m)                         | Puts all the entries from m into the map                                         |
+| putIfAbsent(Object key, Object value) | Puts an entry in the map if the key doesn't already exist                        |
+| remove(Object key)                    | Removes the entry whose key equals key                                           |
+
+### The of method
+
+So far, you've used `add` to add elements to collections.
+
+You can also use the `of` method and pass in all the elements you want. This is convenient but has the cost that setting a collection in this way makes the collection immutable, so you cannot change it later. This applies to `List`s, `Set`s and `Map`s.
+
+```java
+List unchangeableList = List.of("apple", "lemon", "banana");
+unchangeableList.add("orange"); // UnsupportedOperationException
+unchangeableList.remove(1); // UnsupportedOperationException
+```
