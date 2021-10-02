@@ -1343,3 +1343,70 @@ List unchangeableList = List.of("apple", "lemon", "banana");
 unchangeableList.add("orange"); // UnsupportedOperationException
 unchangeableList.remove(1); // UnsupportedOperationException
 ```
+
+## Looping through collections and Maps
+
+### Iterators
+
+The `Collection` interface provides an `iterator` for you, in order to loop through a collection.
+
+For example, `Set` is an unordered collection so there are no methods on it that will let you get a certain item by its index. But an iterator will let you iterate over each of the items in this collection.
+
+The iterator's `hasNext` method returns true as long as there is another element in the collection and will return false once it reaches the end of the collection.
+
+The iterator's `next` method will return the next element in the collection.
+
+```java
+public static void setDemo(){
+    Set fruit = new HashSet();
+    fruit.add("apple");
+    fruit.add("lemon");
+    fruit.add("banana");
+    fruit.add("orange");
+    fruit.add("lemon");
+
+    var i = fruit.iterator();
+    while(i.hasNext()) {
+        System.out.println(i.next());
+    }
+}
+```
+
+### Enhanced for loops
+
+Collections are generic, in that they just store Objects, and since Object is the grandparent to every class in Java, then that is safe to use.
+
+If you want to use an enhanced for loop to iterate through a Set of strings, you need to tell the Set it's holding strings.
+
+You can use the diamond operator `<>` to update the Set's declaration.
+
+```java
+public static void setDemo(){
+    Set<String> fruit = new HashSet();
+    fruit.add("apple");
+    fruit.add("lemon");
+    fruit.add("banana");
+    fruit.add("orange");
+    fruit.add("lemon");
+
+    for(String item: fruit){
+    System.out.println(item);
+    }
+}
+```
+
+### forEach
+
+The `forEach` method takes a lambda expression which it executes for each element in the collection. Lambda's are short single-purpose functions.
+
+The lambda takes in a generic name for the current element in the collection and an action to perform.
+
+There is also a shorthand lambda that uses `::` and doens't need to be explicitly passed a variable.
+
+```java
+// lambda
+fruit.forEach(x -> System.out.println(x));
+
+// lambda shorthand
+fruit.forEach(System.out::println);
+```
