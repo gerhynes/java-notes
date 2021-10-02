@@ -1372,7 +1372,7 @@ public static void setDemo(){
 }
 ```
 
-### Enhanced for loops
+### Collections - Enhanced for loops
 
 Collections are generic, in that they just store Objects, and since Object is the grandparent to every class in Java, then that is safe to use.
 
@@ -1395,7 +1395,7 @@ public static void setDemo(){
 }
 ```
 
-### forEach
+### Collections - forEach
 
 The `forEach` method takes a lambda expression which it executes for each element in the collection. Lambda's are short single-purpose functions.
 
@@ -1409,4 +1409,40 @@ fruit.forEach(x -> System.out.println(x));
 
 // lambda shorthand
 fruit.forEach(System.out::println);
+```
+
+### Maps- Enhanced for loops
+
+Since a `Map` is not a `Collection`, it's a little trickier to iterate over it.
+
+The `entrySet` method will give you a Set object from which you can then access individual entries.
+
+But to call `getValue` on an entry you need to specify the type using the diamond operator. Because `Map` takes two objects you need to provide two data types, in this case:
+
+1. One for the key, in this case a String
+2. One for the value, in this case an int
+
+Now `entry` is a Map of a String and an Integer and `getValue` can access this.
+
+```java
+public static void mapDemo(){
+    Map<String,Integer> fruitCalories = new HashMap();
+    fruitCalories.put("apple", 95);
+    fruitCalories.put("lemon", 20);
+    fruitCalories.put("banana", 105);
+    fruitCalories.put("lemon", 17);
+
+    for(var entry : fruitCalories.entrySet()){
+        System.out.println(entry.getValue());
+    }
+}
+```
+
+### Map - forEach
+
+A Map also has access to the `forEach` method. You can call `fruitCalories.forEach()` and pass it a key and a value.
+
+```java
+fruitCalories.forEach(
+    (k,v)->System.out.println("Fruit: " + k + ", Calories: " + v));
 ```
