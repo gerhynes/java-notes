@@ -1446,3 +1446,49 @@ A Map also has access to the `forEach` method. You can call `fruitCalories.forEa
 fruitCalories.forEach(
     (k,v)->System.out.println("Fruit: " + k + ", Calories: " + v));
 ```
+
+## Exceptions
+
+An exception is an unexpected event that occurs at runtime due to an error and disrupts the normal flow of a programme.
+
+For example, if you try to create a file in a directory that doesn't yet exist you'll cause an `IOException`.
+
+The following code will compile but will throw an `ArrayIndexOutOfBoundsException` when it tries to access index 3.
+
+```java
+String[] employees = {"Moshe", "Adam", "Gil"};
+for(int i = 0; i<4; i++){
+    System.out.println("Hi " + employees[i]);
+}
+```
+
+You can handle exceptions so that your programme doesn't crash and a meaningful message is provided to your user.
+
+You do this using a `try/catch` clause.
+
+The programme will try to run the code in the `try` block and if an exception occurs it can be handled in the `catch` block.
+
+In the parenthesis for `catch` you need to specify what type of exception you are catching, for example an `IOException`, and give it a variable name, such as `e` or `ex`.
+
+The exception has methods on it which allow you to provide more information, such as `getMessage()` or `printStackTrace()`.
+
+```java
+import java.io.File;
+import java.io.IOException;
+
+public class ExceptionHandling {
+    public static void main(String[] args) {
+        createNewFile();
+    }
+
+    public static void createNewFile(){
+        File file = new File("resources/nonexistent.txt");
+        try {
+            file.createNewFile();
+        } catch(IOException e){
+            System.out.println("Directory does not exist");
+            e.printStackTrace();
+        }
+    }
+}
+```
