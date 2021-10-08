@@ -1492,3 +1492,96 @@ public class ExceptionHandling {
     }
 }
 ```
+
+### Polymorphism with Exceptions
+
+When handling exceptions, you can also use the superclass as a way to catch broader exceptions.
+
+For example, `ArrayIndexOutOfBoundsException` inherits from a chain of exceptions going up to `Exception`.
+
+All exceptions inherit from this `Exception` class.
+
+If you don't know which exception is likely to occur, or the method could throw more than one exception, you can use `Exception` instead of specifying a particular exception.
+
+You don't have to use `Exception`, you could also use any of the parent classes of the particular exception you expect.
+
+```java
+try{
+    file.createNewFile();
+}catch (Exception e){
+    System.out.println("Directory does not exist.");
+    e.printStackTrace();
+}
+```
+
+### Handling Multiple Exceptions
+
+You can use multiple `catch` clauses to handle different types of exceptions.
+
+If the multiple `catch` clauses contain related exceptions, the subclass’ `catch` clause must appear first. Otherwise, it will never have the possibility of reaching other `catch` clauses.
+
+```java
+try{
+    Scanner fileReader = new Scanner(file);
+    while(fileReader.hasNext()){
+        double num = fileReader.nextDouble();
+        System.out.println(num);
+    }
+} catch(FileNotFoundException e){
+    e.printStackTrace();
+} catch(InputMismatchException e){
+    e.printStackTrace();
+} catch(Exception e){
+    e.printStackTrace();
+}
+```
+
+You can include multiple exceptions in one catch clause using `|`.
+
+```java
+catch(FileNotFoundException | InputMismatchException e){
+    e.printStackTrace();
+}
+```
+
+### The finally Clause
+
+A `finally` clause can optionally be added below any `catch` clauses.
+
+This clause is executed after `try` and after any `catch` clauses, even if the `catch` clauses don't execute.
+
+The `finally` block will execute no matter what and is useful for code that you need to make sure runs even if an exception happens.
+
+```java
+public static void numbersExceptionHandling(){
+    File file = new File("resources/numbers.txt");
+    Scanner fileReader = null;
+    try {
+        fileReader = new Scanner(file);
+        while(fileReader.hasNext()){
+            double num = fileReader.nextDouble();
+            System.out.println(num);
+        }
+    } catch(FileNotFoundException | InputMismatchException e){
+        e.printStackTrace();
+    } finally{
+        fileReader.close();
+    }
+}
+```
+
+### Try with resources
+
+Try with resources allows you to specify a resource and Java will automatically close this resource on your behalf once done with the try/catch.
+
+This only works with classes that implement the Closable or AutoClosable interfaces, such as `Scanner`.
+
+```java
+File file = new File("resources/numbers.txt");
+try(Scanner fileReader = new Scanner(file)){
+    while(fileReader.hasNext()){
+        double num = fileReader.nextDouble();
+        System.out.println(num);
+    }
+}
+```
