@@ -1585,3 +1585,61 @@ try(Scanner fileReader = new Scanner(file)){
     }
 }
 ```
+
+### Rethrowing Exceptions
+
+If your method has code that could potentially throw an exception, you must either catch that exception or rethrow it.
+
+When a method throws an exception, it's assumed that that exception will be caught and handled, or rethrown by any calling methods.
+
+You can tell a method not to handle an exception but to rethrow it by adding the `throws` keyword to the method header and then specifying the `Exception` to be thrown.
+
+```java
+public class ExceptionHandling {
+
+    public static void main(String args[]){
+        createNewFileRethrow();
+    }
+
+    public static void createNewFileRethrow() throws IOException{
+        File file = new File("resources/nonexistent.txt");
+        file.createNewFile();
+    }
+}
+```
+
+Polymorphism also works here, so you could use `Exception` if you didn't know exactly which exception might be thrown.
+
+Now, if any other method calls this method, then they are now responsible for handling the exception.
+
+### Throwing Exceptions
+
+Your method can initiate throwing an exception by using `throw` inside the method body and instantiating an exception.
+
+For example, if a `calculateSalary()` method doesn't allow for overtime, there is no built-in Java exception that will automatically be called.
+
+So you would need to deliberately throw an exception and pass in a custom error message.
+
+```java
+public static void calculateSalary(double hours, double rate){
+    if(hours > 40) {
+        throw new IllegalArgumentException("Overtime is not allowed.")
+    }
+}
+```
+
+You can also define a custom exception class which extends `Exception` and throw that instead, for example `NoOvertimeAllowedException`.
+
+```java
+public class DivideByZero {
+    public static void main(String[] args){
+        try{
+            int c = 30/0;
+        } catch(ArithmeticException e){
+            System.out.println("Dividing by zero is not permitted");
+        } finally {
+            System.out.println("Division is fun!");
+        }
+    }
+}
+```
