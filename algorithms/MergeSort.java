@@ -6,20 +6,14 @@ public class MergeSort {
 
         // Loop over and print unsorted array
         System.out.println("Unsorted array: ");
-        for (int i = 0; i < arr.length; i++) {
-            System.out.print(arr[i] + " ");
-            // Print newline after printing full array
-            if((i + 1) % arr.length == 0) System.out.printf("%n");
-        }
+        printArray(arr);
 
         // Call mergeSort method
         mergeSort(arr, arr.length);
 
         // Loop over and print sorted array
         System.out.println("Sorted array: ");
-        for (int i = 0; i < arr.length; i++) {
-            System.out.print(arr[i] + " ");
-        }
+        printArray(arr);
     }
 
     public static void mergeSort(int[] arr, int len){
@@ -80,6 +74,7 @@ public class MergeSort {
             }
         }
 
+        // Copy remaining elements of leftArr, if any
         while (i < left){
             arr[k] = leftArr[i];
             // Increment final array index
@@ -88,6 +83,7 @@ public class MergeSort {
             i++;
         }
 
+        // Copy remaining elements of rightArr, if any
         while(j < right){
             arr[k] = rightArr[j];
             // Increment final array index
@@ -95,5 +91,13 @@ public class MergeSort {
             // Increment right array index
             j++;
         }
+    }
+
+    static void printArray(int arr[]){
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        // Print blank line to separate arrays
+        System.out.println();
     }
 }
