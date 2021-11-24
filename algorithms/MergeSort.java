@@ -1,63 +1,83 @@
+import java.util.Scanner;
+
 class MergeSort {
     public static void main(String args[]) {
         // Initialize array
-        int arr[] = { 12, 7, -3, 5, 9, 4 };
+        int arr[] = { 4, 1, 7, 3, 12, 2, -1 };
 
-        // Loop over and print unsorted array
+//        // Set desired length of array
+//        int arrLength = 10;
+//
+//        // Initialize array
+//        int[] arr = new int[arrLength];
+//
+//        // Initialize scanner object
+//        Scanner scanner = new Scanner(System.in);
+//
+//        // Take in numbers from user and populate array
+//        System.out.println("Enter " + arrLength + " numbers to populate an array: ");
+//        for(int i = 0; i < arr.length; i++){
+//            arr[i] = scanner.nextInt();
+//        }
+
+        // Print unsorted array
         System.out.println("Unsorted Array");
         printArray(arr);
 
         // Sort array
-        sort(arr, 0, arr.length - 1);
+        mergesort(arr, 0, arr.length - 1);
 
-        // Loop over and print sorted array
+        // Print sorted array
         System.out.println("Sorted array");
         printArray(arr);
     }
 
-    // Sort arr[first...last] using merge()
-    static void sort(int arr[], int first, int last)
+    // Sort arr[leftIndex...rightIndex] using mergesort
+    static void mergesort(int arr[], int leftIndex, int rightIndex)
     {
-        if (first < last) {
-            // Find the middle point
-            int mid = first + (last-first)/2;
+        // Check if the array contains more than one element and is unsorted
+        if (leftIndex < rightIndex) {
+            // Find the midpoint of the array
+            int mid = (leftIndex + rightIndex)/2;
 
-            // Sort left and right halves
-            sort(arr, first, mid);
-            sort(arr, mid + 1, last);
+            // Sort the left and right halves of the array
+            mergesort(arr, leftIndex, mid);
+            mergesort(arr, mid + 1, rightIndex);
 
             // Merge the sorted halves
-            merge(arr, first, mid, last);
+            merge(arr, leftIndex, mid, rightIndex);
         }
     }
 
-    // Merges two subarrays of arr
-    // First subarray is arr[first...mid]
-    // Second subarray is arr[mid+1...last]
-    static void merge(int arr[], int first, int mid, int last)
+    // Merge two subarrays of arr
+    // First subarray is arr[leftIndex...mid]
+    // Second subarray is arr[mid+1...rightIndex]
+    static void merge(int arr[], int leftIndex, int mid, int rightIndex)
     {
-        // Find the lengths of two subarrays to be merged
-        int len1 = mid - first + 1;
-        int len2 = last - mid;
+        // Find the lengths of the two subarrays to be merged
+        int len1 = mid - leftIndex + 1;
+        int len2 = rightIndex - mid;
 
-        // Create temp arrays
+        // Create temporary arrays
         int leftArr[] = new int[len1];
         int rightArr[] = new int[len2];
 
-        // Copy data to temp arrays
-        for (int i = 0; i < len1; ++i)
-            leftArr[i] = arr[first + i];
-        for (int j = 0; j < len2; ++j)
+        // Copy arr contents to temporary arrays
+        for (int i = 0; i < len1; i++)
+            leftArr[i] = arr[leftIndex + i];
+        for (int j = 0; j < len2; j++)
             rightArr[j] = arr[mid + 1 + j];
 
-        // Merge the temp arrays
+        // =====================
+        // Merge the temporary arrays
+        // =====================
 
         // Initial indexes of first and second subarrays
         int i = 0;
         int j = 0;
 
         // Initial index of merged subarray array
-        int k = first;
+        int k = leftIndex;
 
         // Add values to merged array in order
         while (i < len1 && j < len2) {
@@ -71,18 +91,21 @@ class MergeSort {
                 arr[k] = rightArr[j];
                 j++;
             }
-            // Increment sorted array index
             k++;
         }
 
-        // Copy remaining elements of leftArr, if any
+        // ========================
+        // Copy any leftover values
+        // ========================
+
+        // Copy remaining elements, if any, of leftArr into sorted array
         while (i < len1) {
             arr[k] = leftArr[i];
             i++;
             k++;
         }
 
-        // Copy remaining elements of rightArr, if any
+        // Copy remaining elements, if any, of rightArr into sorted array
         while (j < len2) {
             arr[k] = rightArr[j];
             j++;
