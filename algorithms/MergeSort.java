@@ -1,103 +1,100 @@
-public class MergeSort {
-    public static void main(String[] args) {
-//        int[] arr = new int[10];
-
-        int[] arr = {3,-1,7,4,2,9,2,11,8};
+class MergeSort {
+    public static void main(String args[]) {
+        // Initialize array
+        int arr[] = { 12, 7, -3, 5, 9, 4 };
 
         // Loop over and print unsorted array
-        System.out.println("Unsorted array: ");
+        System.out.println("Unsorted Array");
         printArray(arr);
 
-        // Call mergeSort method
-        mergeSort(arr, arr.length);
+        // Sort array
+        sort(arr, 0, arr.length - 1);
 
         // Loop over and print sorted array
-        System.out.println("Sorted array: ");
+        System.out.println("Sorted array");
         printArray(arr);
     }
 
-    public static void mergeSort(int[] arr, int len){
-        // If array is empty or has one element, consider it sorted
-        if(len < 2){
-            return;
+    // Sort arr[first...last] using merge()
+    static void sort(int arr[], int first, int last)
+    {
+        if (first < last) {
+            // Find the middle point
+            int mid = first + (last-first)/2;
+
+            // Sort left and right halves
+            sort(arr, first, mid);
+            sort(arr, mid + 1, last);
+
+            // Merge the sorted halves
+            merge(arr, first, mid, last);
         }
-
-        // Find midpoint of array
-        int mid = len/2;
-
-        // Split the array into two temporary arrays
-        int[] leftArr = new int[mid];
-        int[] rightArr = new int[len-mid];
-
-        // Loop over the left half of the array
-        // Populate the left temporary array
-        for (int i = 0; i < mid; i++) {
-            leftArr[i] = arr[i];
-        }
-
-        // Loop over the right half of the array
-        // Populate the right temporary array
-        for (int i = mid; i < len; i++) {
-            rightArr[i - mid] = arr[i];
-        }
-
-        // Call mergeSort recursively on both the left and right temporary arrays
-        mergeSort(leftArr, mid);
-        mergeSort(rightArr, len - mid);
-
-        // Merge the left and right array
-        merge(arr, leftArr, rightArr, mid, len-mid);
     }
 
-    public static void merge(int[] arr, int[] leftArr, int[] rightArr, int left, int right){
-        // Create variables to track current index in left, right and final (merged) array
+    // Merges two subarrays of arr
+    // First subarray is arr[first...mid]
+    // Second subarray is arr[mid+1...last]
+    static void merge(int arr[], int first, int mid, int last)
+    {
+        // Find the lengths of two subarrays to be merged
+        int len1 = mid - first + 1;
+        int len2 = last - mid;
+
+        // Create temp arrays
+        int leftArr[] = new int[len1];
+        int rightArr[] = new int[len2];
+
+        // Copy data to temp arrays
+        for (int i = 0; i < len1; ++i)
+            leftArr[i] = arr[first + i];
+        for (int j = 0; j < len2; ++j)
+            rightArr[j] = arr[mid + 1 + j];
+
+        // Merge the temp arrays
+
+        // Initial indexes of first and second subarrays
         int i = 0;
         int j = 0;
-        int k = 0;
 
-        while(i < left && j < right){
-            System.out.println("i=" + i + " j=" + j + " k=" + k);
-            if(leftArr[i] <= rightArr[j]){
-                // Set value in left array into final array
+        // Initial index of merged subarray array
+        int k = first;
+
+        // Add values to merged array in order
+        while (i < len1 && j < len2) {
+            // If leftArr value greater, add to sorted array
+            if (leftArr[i] <= rightArr[j]) {
                 arr[k] = leftArr[i];
-                // Increment final array index
-                k++;
-                // Increment left array index
                 i++;
-            } else {
-                // Set value in right array into final array
+            }
+            // If rightArr value greater, add to sorted array
+            else {
                 arr[k] = rightArr[j];
-                // Increment final array index
-                k++;
-                // Increment right array index
                 j++;
             }
+            // Increment sorted array index
+            k++;
         }
 
         // Copy remaining elements of leftArr, if any
-        while (i < left){
+        while (i < len1) {
             arr[k] = leftArr[i];
-            // Increment final array index
-            k++;
-            // Increment left array index
             i++;
+            k++;
         }
 
         // Copy remaining elements of rightArr, if any
-        while(j < right){
+        while (j < len2) {
             arr[k] = rightArr[j];
-            // Increment final array index
-            k++;
-            // Increment right array index
             j++;
+            k++;
         }
     }
 
-    static void printArray(int arr[]){
-        for (int i = 0; i < arr.length; i++) {
+    // Method for looping over and printing array
+    static void printArray(int arr[]) {
+        for (int i = 0; i < arr.length; ++i)
             System.out.print(arr[i] + " ");
-        }
-        // Print blank line to separate arrays
         System.out.println();
     }
 }
+
