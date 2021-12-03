@@ -1643,3 +1643,109 @@ public class DivideByZero {
     }
 }
 ```
+
+## Serialization and Writing to Files
+
+If you need to save the state of your Java program, you can:
+
+1. - If your data will only be used by the program that generated it - use serialization. This writes a file that holds flattened (serialized) objects.
+
+2. - If your data will be used by other programs - write to a file. Write to a text file using delimiters that other programs can parse.
+
+Serialization saves the entire object graph - all objects referenced by instance variables, starting with the object being serialized.
+
+A `Serializable` interface announces that the class implementing it is serializable.
+
+```java
+class Employee implements Serializable
+```
+
+Serialization is all or nothing; all of the object graph must be serializable.
+
+If an instance variable can't, or shouldn't, be saved, use the transient keyword.
+
+```java
+transient String connection;
+```
+
+### Serialization Syntax
+
+```java
+try {
+    // Create a connection stream - write bytes
+    FileOutputStream fileStream = new FileOutputStream("EmployeeInfo.dat");
+    // Create a chain stream - allow objects to be written to the stream
+    ObjectOutputStream objStream = new ObjectOutputStream(fileStream);
+    objStream.writeObject(list);
+    objStream.close();
+    catch(Exception e){
+        e.printStackTrace();
+    }
+}
+```
+
+### Deserialization
+
+Deserialization brings an object back to its original state. The JVM attempts to make a new object on the heap that has the same state as the serialized object had at the time it was serialized.
+
+Transient variables are set to:
+
+- null for object references
+- default values for primitives
+
+```java
+try {
+    FileInputstream fileStream = new FileInputStream("EmployeeInfo.dat");
+    ObjectInputStream objStream = new ObjectInputStream(fileStream);
+    List<Employee> employees  = (List<Employee>)objStream.readObject();
+
+    for(Employee employee : employees){
+        System.out.println(employee.toString());
+    }
+
+    objStream.close();
+} catch(Exception e){
+    e.printStackTrace();
+}
+```
+
+### Writing to Files
+
+Buffers make writing to files more efficient. They offer a temporary holding place until the buffer is full and writing commences.
+
+### Syntax for Writing to a File
+
+```java
+try {
+    FileWriter fileWriter = new FileWriter("EmployeeList.txt");
+    BufferedWriter writer = new BufferedWriter(fileWriter);
+
+    writer.write("Employee List \n");
+
+    for (Employee employee : employeeList){
+        writer.write("Empoyee: " + employee.toString);
+    }
+
+    writer.close();
+} catch(IOException e) {
+    e.printStackTrace();
+}
+```
+
+### Syntax for Reading from a File
+
+```java
+try {
+    File employeeFile = new File("EmployeeList.txt");
+    FileReader fileReader = new FileReader(employeeFile);
+    BufferedReader reader = new BufferedReader(fileReader);
+
+    String line = null;
+    while ((line = reader.readLine()) != null){
+        System.out.println(line);   
+    }
+    reader.close();
+} catch(IOException e) {
+    e.printStackTrace();
+}
+```
