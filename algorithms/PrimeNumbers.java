@@ -15,10 +15,8 @@ public class PrimeNumbers {
     }
 
     static boolean isPrime(int n){
-        if(n < 1){
+        if(n <= 1){
             return false;
-        } else if (n == 1){
-            return true;
         }
 
         for(int i = 2; i < n; i++){
